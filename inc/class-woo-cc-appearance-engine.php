@@ -20,7 +20,7 @@ class Woo_CC_Appearance_Engine {
 	 *
 	 * @return array
 	 */
-	public function get_appearance(): array {
+	public function get_appearance() {
 		return [
 			'theme'     => $this->appearance['theme'] ?? 'stripe',
 			'variables' => $this->appearance['variables'] ?? [],
@@ -33,7 +33,7 @@ class Woo_CC_Appearance_Engine {
 	 *
 	 * @param array $new_options
 	 */
-	public function set_appearance( array $new_options ): void {
+	public function set_appearance( array $new_options ) {
 		$this->appearance = array_merge_recursive( $this->appearance, $this->sanitize_appearance_options( $new_options ) );
 	}
 
@@ -43,7 +43,7 @@ class Woo_CC_Appearance_Engine {
 	 * @param array $options
 	 * @return array
 	 */
-	protected function sanitize_appearance_options( array $options ): array {
+	protected function sanitize_appearance_options( array $options ) {
 		$valid_keys = [ 'theme', 'variables', 'rules' ];
 
 		// Only keep known appearance keys

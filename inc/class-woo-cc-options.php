@@ -9,7 +9,7 @@ class CC_Style_Options {
         $this->settings = new Awesome_Options_Framework( [
             'option_name' => $this->option_name,
             'page_title'  => __( 'Woo CC Styles', 'woo-cc' ),
-            'menu_slug'   => 'woo_css_styles',
+            'menu_slug'   => 'woo_cc_styles',
             'menu_icon'    => 'dashicons-admin-appearance', 
             'tab_layout'  => 'horizontal',
             'sections'      => $this->get_fields(),
@@ -35,44 +35,44 @@ class CC_Style_Options {
                 [
                     'id'       => 'colorPrimary',
                     'type'     => 'color',
-                    'selector' => 'var',
+                    'selector' => 'variables',
                     'label'   => __('Primary Color', 'aof'),
                 ],
                 [
                     'id'      => 'colorBackground',
                     'type'    => 'color',
-                    'selector' => 'var',
+                    'selector' => 'variables',
                     'label'   => __('Background Color', 'aof'),
                 ],
                 [
                     'id'       => 'colorDanger',
                     'type'     => 'color',
-                    'selector' => 'var',
+                    'selector' => 'variables',
                     'label'   => __('Error Color', 'aof'),
                 ],
                 [
                     'id'      => 'fontSizeBase',
                     'type'    => 'text',
                     'default' => '16px',
-                    'selector' => 'var',
+                    'selector' => 'variables',
                     'label'   => __('Font Size', 'aof'),
                 ],
                 [
                     'id'      => 'fontLineHeight',
                     'type'    => 'text',
-                    'selector' => 'var',
+                    'selector' => 'variables',
                     'label'   => __('Line Height', 'aof'),
                 ],
                 [
                     'id'      => 'borderRadius',
                     'type'    => 'text',
-                    'selector' => 'var',
+                    'selector' => 'variables',
                     'label'   => __('Border Radius', 'aof'),
                 ],
                 [
                     'id'      => 'spacingUnit',
                     'type'    => 'text',
-                    'selector' => 'var',
+                    'selector' => 'variables',
                     'label'   => __('Spacing', 'aof'),
                 ],
                 
@@ -91,30 +91,35 @@ class CC_Style_Options {
                 [
                     'id' => 'label_color',
                     'type' => 'color',
+                    'selector' => '.Input',
                     'label' => __('Labels Color', 'woo-cc' ),
                     'default' => '',
                 ],
                 [
                     'id' => 'padding_top',
                     'type' => 'text',
+                    'selector' => '.Input',
                     'label' => __('Input Field Padding Top', 'woo-cc' ),
                     'default' => '',
                 ],
                 [
                     'id' => 'padding_left',
                     'type' => 'text',
+                    'selector' => '.Input',
                     'label' => __('Input Field Padding Left', 'woo-cc' ),
                     'default' => '',
                 ],
                 [
                     'id' => 'padding_bottom',
                     'type' => 'text',
+                    'selector' => '.Input',
                     'label' => __('Input Field Padding Bottom', 'woo-cc' ),
                     'default' => '',
                 ],
                 [
                     'id' => 'padding_right',
                     'type' => 'text',
+                    'selector' => '.Input',
                     'label' => __('Input Field Padding Right', 'woo-cc' ),
                     'default' => '',
                 ],
@@ -135,7 +140,7 @@ class CC_Style_Options {
             ],
         ],
         ];
-    return $sections;
+        return $sections;
     }
 
     public function get_option( $key, $default = null ) {
