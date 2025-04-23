@@ -12,9 +12,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
-// Define your API key here or in wp-config.php
 if ( ! defined( 'WOO_CC_STYLES_PATH' ) ) {
-    define( 'WOO_CC_STYLES_PATH', plugin_dir_path(__FILE__) ); // Replace or move to wp-config.php
+    define( 'WOO_CC_STYLES_PATH', plugin_dir_path(__FILE__) );
 }
 
 // Include core files

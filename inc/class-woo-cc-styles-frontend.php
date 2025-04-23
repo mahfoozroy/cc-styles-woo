@@ -20,10 +20,8 @@ class Woo_CC_Styles_Frontend {
 		$this->style_options = get_option( 'woo_cc_styles', [] );
 		$this->style_fields = CC_Style_Options::get_fields();
 		$this->style_engine = new Woo_CC_Appearance_Engine( $this->style_fields, $this->style_options );
-		// echo '<pre>';
-		// print_r( $this->style_engine->get_appearance() );
-		// echo '</pre>';
-		//$this->init_hooks();
+		
+		$this->init_hooks();
 	}
 
 	protected function init_hooks() {
@@ -43,7 +41,7 @@ class Woo_CC_Styles_Frontend {
 	public function filter_stripe_appearance( $appearance ) {
 		$custom = $this->style_engine->get_appearance();
 
-		return array_merge_recursive( $appearance, $custom );
+		return array_merge( $appearance, $custom );
 	}
 }
 new Woo_CC_Styles_Frontend();

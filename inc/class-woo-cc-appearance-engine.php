@@ -64,6 +64,10 @@ class Woo_CC_Appearance_Engine {
 				$selector = $field['selector'] ?? '';
                 $default_value = $field['default'] ?? '';
 				$value    = $option_data[ $id ] ?? $default_value;
+                
+                if ( isset( $field['validate'] ) ) {
+                    $valie = $this->validate_value( $value, $field['validate'] );
+                }
 
 				if ( empty( $selector ) || $value === null || $value === '' ) {
 					continue;
@@ -84,4 +88,20 @@ class Woo_CC_Appearance_Engine {
 
 		return $appearance;
 	}
+
+    /**
+     * Sanitize or validate values according to validate type.
+     *
+     * @param string|int|float $value The value to sanitize.
+     *
+     */
+    protected function validate_value( $value, $validate ) {
+       if ( '' === $value || null === $value ) {
+            return '';
+       }
+       if ( 'spacing' === $validate ) {
+            $value = AOF_Helper::sanitize_unit_value( $value );
+       } 
+       return $value;
+    }
 }
