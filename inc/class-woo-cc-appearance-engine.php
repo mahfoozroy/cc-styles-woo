@@ -11,8 +11,8 @@ class Woo_CC_Appearance_Engine {
 	 *
 	 * @param array $style_options Your global options array.
 	 */
-	public function __construct( $style_options = [] ) {
-		$this->appearance = $this->sanitize_appearance_options( $style_options );
+	public function __construct( $fields, $style_options = [] ) {
+		$this->appearance = $this->build_appearance_from_fields( $fields, $style_options );
 	}
 
 	/**
@@ -26,15 +26,6 @@ class Woo_CC_Appearance_Engine {
 			'variables' => $this->appearance['variables'] ?? [],
 			'rules'     => $this->appearance['rules'] ?? [],
 		];
-	}
-
-	/**
-	 * Set or override the appearance options.
-	 *
-	 * @param array $new_options
-	 */
-	public function set_appearance( array $new_options ) {
-		$this->appearance = array_merge_recursive( $this->appearance, $this->sanitize_appearance_options( $new_options ) );
 	}
 
 	/**
@@ -52,5 +43,45 @@ class Woo_CC_Appearance_Engine {
 			fn( $key ) => in_array( $key, $valid_keys, true ),
 			ARRAY_FILTER_USE_KEY
 		);
+	}
+
+    /**
+	 * Converts the settings and their selector types into Stripe appearance structure.
+	 *
+	 * @param array $field_definitions Fields from AOF
+	 * @param array $option_data Values stored in wp_options
+	 * @return array
+	 */
+	protected function build_appearance_from_fields( $field_definitions, $option_data )  {
+		$appearance = [
+			'variables' => [],
+			'rules'     => [],
+		];
+
+		foreach ( $field_definitions as $section ) {
+			foreach ( $section['fields'] as $field ) {
+				$id       = $field['id'];
+				$selector = $field['selector'] ?? '';
+                $default_value = $field['default'] ?? '';
+				$value    = $option_data[ $id ] ?? $default_value;
+
+				if ( empty( $selector ) || $value === null || $value === '' ) {
+					continue;
+				}
+
+				if ( $selector === 'theme' ) {
+					$appearance['theme'] = $value;
+				} elseif ( $selector === 'variables' ) {
+					$appearance['variables'][ $id ] = $value;
+				} elseif ( str_starts_with( $selector, '.' )) {
+					if ( ! isset( $appearance['rules'][ $selector ] ) ) {
+						$appearance['rules'][ $selector ] = [];
+					}
+					$appearance['rules'][ $selector ][ $id ] = $value;
+				}
+			}
+		}
+
+		return $appearance;
 	}
 }

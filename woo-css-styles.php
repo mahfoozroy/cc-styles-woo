@@ -20,3 +20,4 @@ if ( ! defined( 'WOO_CC_STYLES_PATH' ) ) {
 // Include core files
 require_once WOO_CC_STYLES_PATH . 'inc/class-woo-cc-options.php';
 require_once WOO_CC_STYLES_PATH . 'inc/class-woo-cc-appearance-engine.php';
+require_once WOO_CC_STYLES_PATH . 'inc/class-woo-cc-styles-frontend.php';
