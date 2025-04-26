@@ -63,7 +63,7 @@ class Woo_CC_Appearance_Engine {
 
 		foreach ( $field_definitions as $section ) {
 			foreach ( $section['fields'] as $field ) {
-				$id       = $field['id'];
+				$id       = $field['css_property'] ? $field['css_property'] : $field['id'];
 				$selector = $field['selector'] ?? '';
                 $default_value = $field['default'] ?? '';
 				$value    = $option_data[ $id ] ?? $default_value;
