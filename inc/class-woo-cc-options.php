@@ -43,6 +43,16 @@ class CC_Style_Options {
                         ],
                     ],
                     [
+                        'id'      => 'labels',
+                        'type'    => 'select',
+                        'selector' => 'labels',
+                        'label'   => __('Labels Position', 'aof'),
+                        'options' => [
+                            'above' => __( 'Above', 'woo-cc' ),
+                            'floating' => __( 'Floating', 'woo-cc' ),
+                        ],
+                    ],
+                    [
                         'id'       => 'colorPrimary',
                         'type'     => 'color',
                         'selector' => 'variables',
@@ -51,7 +61,7 @@ class CC_Style_Options {
                     [
                         'id'      => 'colorBackground',
                         'type'    => 'color',
-                        'selector' => 'variables',
+                        'selector' => '.Tab',
                         'label'   => __('Background Color', 'aof'),
                     ],
                     [
@@ -68,15 +78,15 @@ class CC_Style_Options {
                         'label'   => __('Font Size', 'aof'),
                     ],
                     [
-                        'id'      => 'fontLineHeight',
+                        'id'      => 'lineHeight',
                         'type'    => 'text',
-                        'selector' => 'variables',
+                        'selector' => '.Input',
                         'label'   => __('Line Height', 'aof'),
                     ],
                     [
                         'id'      => 'borderRadius',
                         'type'    => 'text',
-                        'selector' => 'variables',
+                        'selector' => '.Input',
                         'label'   => __('Border Radius', 'aof'),
                     ],
                     [

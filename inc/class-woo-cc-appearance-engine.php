@@ -23,6 +23,7 @@ class Woo_CC_Appearance_Engine {
 	public function get_appearance() {
 		return [
 			'theme'     => $this->appearance['theme'] ?? 'stripe',
+            'labels'     => $this->appearance['labels'] ?? 'above',
 			'variables' => $this->appearance['variables'] ?? [],
 			'rules'     => $this->appearance['rules'] ?? [],
 		];
@@ -35,7 +36,7 @@ class Woo_CC_Appearance_Engine {
 	 * @return array
 	 */
 	protected function sanitize_appearance_options( array $options ) {
-		$valid_keys = [ 'theme', 'variables', 'rules' ];
+		$valid_keys = [ 'theme', 'variables', 'rules', 'labels' ];
 
 		// Only keep known appearance keys
 		return array_filter(
@@ -54,6 +55,8 @@ class Woo_CC_Appearance_Engine {
 	 */
 	protected function build_appearance_from_fields( $field_definitions, $option_data )  {
 		$appearance = [
+            'theme'     => 'stripe',
+            'labels'     => 'above',
 			'variables' => [],
 			'rules'     => [],
 		];
@@ -66,7 +69,7 @@ class Woo_CC_Appearance_Engine {
 				$value    = $option_data[ $id ] ?? $default_value;
                 
                 if ( isset( $field['validate'] ) ) {
-                    $valie = $this->validate_value( $value, $field['validate'] );
+                    $value = $this->validate_value( $value, $field['validate'] );
                 }
 
 				if ( empty( $selector ) || $value === null || $value === '' ) {
@@ -75,6 +78,8 @@ class Woo_CC_Appearance_Engine {
 
 				if ( $selector === 'theme' ) {
 					$appearance['theme'] = $value;
+				} elseif ( $selector === 'labels' ) {
+					$appearance['labels'] = $value;
 				} elseif ( $selector === 'variables' ) {
 					$appearance['variables'][ $id ] = $value;
 				} elseif ( str_starts_with( $selector, '.' )) {
