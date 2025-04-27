@@ -55,19 +55,18 @@ class Woo_CC_Appearance_Engine {
 	 */
 	protected function build_appearance_from_fields( $field_definitions, $option_data )  {
 		$appearance = [
-            'theme'     => 'stripe',
-            'labels'     => 'above',
 			'variables' => [],
 			'rules'     => [],
 		];
 
 		foreach ( $field_definitions as $section ) {
 			foreach ( $section['fields'] as $field ) {
-				$id       = $field['css_property'] ? $field['css_property'] : $field['id'];
+				$id       = $field['id'] ?? '';
 				$selector = $field['selector'] ?? '';
                 $default_value = $field['default'] ?? '';
 				$value    = $option_data[ $id ] ?? $default_value;
-                
+                $property = $field['css_property'] ? $field['css_property'] : $field['id'];
+
                 if ( isset( $field['validate'] ) ) {
                     $value = $this->validate_value( $value, $field['validate'] );
                 }
@@ -81,12 +80,24 @@ class Woo_CC_Appearance_Engine {
 				} elseif ( $selector === 'labels' ) {
 					$appearance['labels'] = $value;
 				} elseif ( $selector === 'variables' ) {
-					$appearance['variables'][ $id ] = $value;
-				} elseif ( str_starts_with( $selector, '.' )) {
-					if ( ! isset( $appearance['rules'][ $selector ] ) ) {
-						$appearance['rules'][ $selector ] = [];
-					}
-					$appearance['rules'][ $selector ][ $id ] = $value;
+					$appearance['variables'][ $property ] = $value;
+				} elseif ( is_array( $selector ) || str_starts_with( $selector, '.' ) ) {
+                    if ( is_array( $selector ) ) {
+                        foreach( $selector as $class ) {
+                            if ( ! isset( $appearance['rules'][ $class ] ) ) {
+                                $appearance['rules'][ $class ] = [];
+                            } 
+                            if ( str_starts_with( $class, '.' ) ) {
+                                $appearance['rules'][ $class ][ $property ] = $value;
+                            }
+                        }
+ 
+                    } else {
+                        if ( ! isset( $appearance['rules'][ $selector ] ) ) {
+                            $appearance['rules'][ $selector ] = [];
+                        } 
+                        $appearance['rules'][ $selector ][ $property ] = $value;
+                    }
 				}
 			}
 		}
