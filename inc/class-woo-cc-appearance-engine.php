@@ -70,6 +70,9 @@ class Woo_CC_Appearance_Engine {
                 if ( isset( $field['validate'] ) ) {
                     $value = $this->validate_value( $value, $field['validate'] );
                 }
+                if ( is_array( $value ) ) {
+                    $value = $this->map_spacing( $value, $field['type'] );
+                }   
 
 				if ( empty( $selector ) || $value === null || $value === '' ) {
 					continue;
@@ -88,7 +91,14 @@ class Woo_CC_Appearance_Engine {
                                 $appearance['rules'][ $class ] = [];
                             } 
                             if ( str_starts_with( $class, '.' ) ) {
-                                $appearance['rules'][ $class ][ $property ] = $value;
+                                if ( is_array( $property ) && is_array( $value )  ) {
+                                    foreach( $property as $prop ) {
+                                        $appearance['rules'][ $class ][ $prop ] = isset( $value[ $prop ] ) ?? '';
+                                    }
+
+                                } else {
+                                    $appearance['rules'][ $class ][ $property ] = $value;
+                                }
                             }
                         }
  
@@ -96,7 +106,14 @@ class Woo_CC_Appearance_Engine {
                         if ( ! isset( $appearance['rules'][ $selector ] ) ) {
                             $appearance['rules'][ $selector ] = [];
                         } 
-                        $appearance['rules'][ $selector ][ $property ] = $value;
+                        if ( is_array( $property ) && is_array( $value )  ) {
+                            foreach( $property as $prop ) {
+                                $appearance['rules'][ $selector ][ $prop ] = $value[ $prop ] ?? '';
+                            }
+
+                        } else {
+                            $appearance['rules'][ $selector ][ $property ] = $value;
+                        }
                     }
 				}
 			}
@@ -112,12 +129,36 @@ class Woo_CC_Appearance_Engine {
      *
      */
     protected function validate_value( $value, $validate ) {
-       if ( '' === $value || null === $value ) {
+       if ( empty( $value ) || null === $value ) {
             return '';
        }
        if ( 'spacing' === $validate ) {
-            $value = AOF_Helper::sanitize_unit_value( $value );
+            if ( is_array( $value ) ) {
+                foreach( $value as $key => $side ) {
+                    $value[ $key ] = AOF_Helper::sanitize_unit_value( $side );
+                }
+            } else {
+                $value = AOF_Helper::sanitize_unit_value( $value );
+            }
        } 
        return $value;
+    }
+
+     /**
+     * Sanitize or validate values according to validate type.
+     *
+     * @param string|int|float $value The value to sanitize.
+     *
+     */
+    protected function map_spacing( $value, $type = '' ) {
+        if ( ! is_array( $value ) ) {
+             return '';
+        }
+        $result = [];
+        foreach ( $value as $edge => $value ) {
+            $key = $type . ucfirst($edge);
+            $result[ $key ] = $value;
+        }
+        return $result;
     }
 }
