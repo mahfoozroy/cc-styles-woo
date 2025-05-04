@@ -70,6 +70,7 @@ class Woo_CC_Appearance_Engine {
                 if ( isset( $field['validate'] ) ) {
                     $value = $this->validate_value( $value, $field['validate'] );
                 }
+                
                 if ( is_array( $value ) ) {
                     $value = $this->map_spacing( $value, $field['type'] );
                 }   
@@ -93,7 +94,9 @@ class Woo_CC_Appearance_Engine {
                             if ( str_starts_with( $class, '.' ) ) {
                                 if ( is_array( $property ) && is_array( $value )  ) {
                                     foreach( $property as $prop ) {
-                                        $appearance['rules'][ $class ][ $prop ] = isset( $value[ $prop ] ) ?? '';
+                                        if ( isset( $value[ $prop ] ) ) {
+                                            $appearance['rules'][ $class ][ $prop ] = $value[ $prop ];
+                                        }
                                     }
 
                                 } else {
@@ -108,7 +111,9 @@ class Woo_CC_Appearance_Engine {
                         } 
                         if ( is_array( $property ) && is_array( $value )  ) {
                             foreach( $property as $prop ) {
-                                $appearance['rules'][ $selector ][ $prop ] = $value[ $prop ] ?? '';
+                                if ( isset( $value[ $prop ] ) ) {
+                                    $appearance['rules'][ $selector ][ $prop ] = $value[ $prop ] ?? '';
+                                }
                             }
 
                         } else {
@@ -156,7 +161,7 @@ class Woo_CC_Appearance_Engine {
         }
         $result = [];
         foreach ( $value as $edge => $value ) {
-            $key = $type . ucfirst($edge);
+            $key = $type . ucfirst( $edge );
             $result[ $key ] = $value;
         }
         return $result;

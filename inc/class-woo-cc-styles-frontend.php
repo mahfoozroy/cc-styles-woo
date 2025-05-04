@@ -20,7 +20,9 @@ class Woo_CC_Styles_Frontend {
 		$this->style_options = get_option( 'woo_cc_styles', [] );
 		$this->style_fields  = CC_Style_Options::get_fields();
 		$this->style_engine  = new Woo_CC_Appearance_Engine( $this->style_fields, $this->style_options );
-		
+		// echo '<pre>';
+		// print_r( $this->style_engine->get_appearance() );
+		// echo '</pre>';
 		// Integrate to plugins using hooks.
 		$this->init_hooks();
 	}
