@@ -119,7 +119,7 @@ class CC_Style_Options {
                         'css_property' => 'color',
                         'type' => 'color',
                         'selector' => [ '.Input', '.Input--invalid' ],
-                        'label' => __('Input fields text color', 'woo-cc' ),
+                        'label' => __('Input Text Color', 'woo-cc' ),
                         'default' => '',
                     ],
                     [
@@ -128,7 +128,7 @@ class CC_Style_Options {
                         'css_property' => 'backgroundColor',
                         'type' => 'color',
                         'selector' => [ '.Input', '.Input--invalid' ],
-                        'label' => __('Input fields text color', 'woo-cc' ),
+                        'label' => __('Input Background Color', 'woo-cc' ),
                         'default' => '',
                     ],
                     [
@@ -137,7 +137,7 @@ class CC_Style_Options {
                         'selector' => '.Input',
                         'validate' => 'spacing',
                         'css_property' => [ 'paddingTop', 'paddingLeft', 'paddingBottom', 'paddingRight' ],
-                        'label' => __('Input Fields Padding', 'woo-cc' ),
+                        'label' => __('Input Padding', 'woo-cc' ),
                         'options' => [ 'top', 'left', 'bottom', 'right' ],
                         'default' => '',
                     ],
@@ -147,7 +147,7 @@ class CC_Style_Options {
                         'selector' => '.Input',
                         'validate' => 'spacing',
                         'css_property' => [ 'marginTop', 'marginLeft', 'marginBottom', 'marginRight' ],
-                        'label' => __('Input Fields Margin', 'woo-cc' ),
+                        'label' => __('Input Margin', 'woo-cc' ),
                         'options' => [ 'top', 'left', 'bottom', 'right' ],
                         'default' => '',
                     ],
@@ -208,7 +208,7 @@ class CC_Style_Options {
     public function clear_woo_appearance_transients( $option_name, $old_value, $new_value ) {
 
         // Check if the option that was saved is related to your Awesome Options framework
-        if ( $option_name === $this->option_name ) {
+        if ( $option_name === self::$option_name ) {
             delete_transient( 'upe_process_redirect_order_id_mismatched' );
             delete_transient( 'wcpay_upe_appearance' );
             delete_transient( 'wcpay_upe_add_payment_method_appearance' );
