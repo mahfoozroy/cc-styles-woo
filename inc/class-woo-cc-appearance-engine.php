@@ -74,7 +74,7 @@ class Woo_CC_Appearance_Engine {
                     $value = $this->map_spacing( $value, $field['type'] );
                 }   
 
-				if ( empty( $selector ) || $value === null || $value === '' ) {
+				if ( empty( $selector ) || $value === null || empty( $value ) ) {
 					continue;
 				}
 

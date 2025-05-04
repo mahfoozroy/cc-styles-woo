@@ -14,6 +14,9 @@ class CC_Style_Options {
 			'tab_layout'  => 'horizontal',
 			'sections'    => self::get_fields(),
 		] );
+
+        // Clear woo transient caches for appearance on save
+        add_action('update_option', 'clear_woo_appearance_transients', 10, 3);
 	}
 
 	/**
@@ -198,6 +201,29 @@ class CC_Style_Options {
 	public static function get_all_options() {
 		return get_option( self::$option_name, [] );
 	}
+
+    /**
+	 * To clear transients
+	 */
+    function clear_woo_appearance_transients( $option_name, $old_value, $new_value ) {
+
+        // Check if the option that was saved is related to your Awesome Options framework
+        if ( $option_name === $this->option_name ) {
+            delete_transient( 'upe_process_redirect_order_id_mismatched' );
+            delete_transient( 'wcpay_upe_appearance' );
+            delete_transient( 'wcpay_upe_add_payment_method_appearance' );
+            delete_transient( 'wcpay_wc_blocks_upe_appearance' );
+            delete_transient( 'wcpay_upe_bnpl_product_page_appearance' );
+            delete_transient( 'wcpay_upe_bnpl_classic_cart_appearance' );
+            delete_transient( 'wcpay_upe_bnpl_cart_block_appearance' );
+            delete_transient( 'wcpay_upe_appearance_theme' );
+            delete_transient( 'wcpay_upe_add_payment_method_appearance_theme' );
+            delete_transient( 'wcpay_wc_blocks_upe_appearance_theme' );
+            delete_transient( 'wcpay_upe_bnpl_product_page_appearance_theme' );
+            delete_transient( 'wcpay_upe_bnpl_classic_cart_appearance_theme' );
+            delete_transient( 'wcpay_upe_bnpl_cart_block_appearance_theme' );
+        }
+    }
 }
 
 // Initialize the settings class

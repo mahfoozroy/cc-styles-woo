@@ -32,8 +32,6 @@ class Woo_CC_Styles_Frontend {
 
 		// WooCommerce Stripe Gateway
 		// add_filter('wc_stripe_elements_appearance', [ $this, 'filter_stripe_appearance'] );
-		add_action('template_redirect', [ $this, 'clear_transient_cache' ], 99 );
-
 	}
 
 	/**
@@ -85,21 +83,6 @@ class Woo_CC_Styles_Frontend {
 		}
 
 		return $appearance;
-	}
-	public function clear_transient_cache() {
-		delete_transient( 'upe_process_redirect_order_id_mismatched' );
-		delete_transient( 'wcpay_upe_appearance' );
-		delete_transient( 'wcpay_upe_add_payment_method_appearance' );
-		delete_transient( 'wcpay_wc_blocks_upe_appearance' );
-		delete_transient( 'wcpay_upe_bnpl_product_page_appearance' );
-		delete_transient( 'wcpay_upe_bnpl_classic_cart_appearance' );
-		delete_transient( 'wcpay_upe_bnpl_cart_block_appearance' );
-		delete_transient( 'wcpay_upe_appearance_theme' );
-		delete_transient( 'wcpay_upe_add_payment_method_appearance_theme' );
-		delete_transient( 'wcpay_wc_blocks_upe_appearance_theme' );
-		delete_transient( 'wcpay_upe_bnpl_product_page_appearance_theme' );
-		delete_transient( 'wcpay_upe_bnpl_classic_cart_appearance_theme' );
-		delete_transient( 'wcpay_upe_bnpl_cart_block_appearance_theme' );
 	}
 }
 new Woo_CC_Styles_Frontend();
