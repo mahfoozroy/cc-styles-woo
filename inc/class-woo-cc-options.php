@@ -16,7 +16,7 @@ class CC_Style_Options {
 		] );
 
         // Clear woo transient caches for appearance on save
-        add_action('update_option', 'clear_woo_appearance_transients', 10, 3);
+        add_action('update_option', [ $this, 'clear_woo_appearance_transients' ], 99, 3);
 	}
 
 	/**
@@ -205,7 +205,7 @@ class CC_Style_Options {
     /**
 	 * To clear transients
 	 */
-    function clear_woo_appearance_transients( $option_name, $old_value, $new_value ) {
+    public function clear_woo_appearance_transients( $option_name, $old_value, $new_value ) {
 
         // Check if the option that was saved is related to your Awesome Options framework
         if ( $option_name === $this->option_name ) {

@@ -65,7 +65,7 @@ class Woo_CC_Appearance_Engine {
 				$selector = $field['selector'] ?? '';
                 $default_value = $field['default'] ?? '';
 				$value    = $option_data[ $id ] ?? $default_value;
-                $property = $field['css_property'] ? $field['css_property'] : $field['id'];
+                $property = isset( $field['css_property'] ) ? $field['css_property'] : $field['id'];
 
                 if ( isset( $field['validate'] ) ) {
                     $value = $this->validate_value( $value, $field['validate'] );
