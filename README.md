@@ -1,4 +1,4 @@
-# woo-cc-styles
+# cc-styles-woo
 
 === Woo Credit Card Field Styles ===
 Contributors: Roy Mahfooz

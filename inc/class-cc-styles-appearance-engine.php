@@ -1,6 +1,11 @@
 <?php
+/**
+ * Appearance engine to build styling object for stripe credit card styling
+ */
 
-class Woo_CC_Appearance_Engine {
+defined( 'ABSPATH' ) || exit;
+
+class CC_Styles_Appearance_Engine {
 	/**
 	 * @var array Default appearance options
 	 */

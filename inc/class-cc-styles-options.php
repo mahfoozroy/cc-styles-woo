@@ -1,22 +1,22 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-class CC_Style_Options {
+class CC_Styles_Options {
 	protected static $option_name = 'woo_cc_styles';
 	protected $settings;
 
 	public function __construct() {
 		$this->settings = new Awesome_Options_Framework( [
 			'option_name' => self::$option_name,
-			'page_title'  => __( 'Woo CC Styles', 'woo-cc' ),
-			'menu_slug'   => 'woo_cc_styles',
+			'page_title'  => __( 'CC Styles Woo', 'cc-styles' ),
+			'menu_slug'   => 'cc_styles',
 			'menu_icon'   => 'dashicons-admin-appearance',
 			'tab_layout'  => 'horizontal',
 			'sections'    => self::get_fields(),
 		] );
 
         // Clear woo transient caches for appearance on save
-        add_action('update_option', [ $this, 'clear_woo_appearance_transients' ], 99, 3);
+        add_action('update_option', [ $this, 'clear_appearance_transients' ], 99, 3);
 	}
 
 	/**
@@ -32,95 +32,95 @@ class CC_Style_Options {
 	public static function get_fields() {
 		return [
             'general' => [
-                'label' => __('General', 'woo-cc'),
+                'label' => __('General', 'cc-styles'),
                 'fields' => [
                     [
                         'id'      => 'theme',
                         'type'    => 'select',
-                        'description' => __('Theme', 'woo-cc'),
+                        'description' => __('Theme', 'cc-styles'),
                         'selector'=> 'theme',
-                        'label'   => __('Theme', 'woo-cc'),
-                        'description'   => __('Credit card fields base theme, flat, night or stripe default', 'woo-cc' ),
+                        'label'   => __('Theme', 'cc-styles'),
+                        'description'   => __('Credit card fields base theme, flat, night or stripe default', 'cc-styles' ),
                         'options' => [
-                            'stripe' => __( 'Stripe', 'woo-cc' ),
-                            'night' => __( 'Night', 'woo-cc' ),
-                            'flat' => __( 'Flat', 'woo-cc' ),
+                            'stripe' => __( 'Stripe', 'cc-styles' ),
+                            'night' => __( 'Night', 'cc-styles' ),
+                            'flat' => __( 'Flat', 'cc-styles' ),
                         ],
                     ],
                     [
                         'id'      => 'labels',
                         'type'    => 'select',
-                        'description' => __('Select the position of labels, either above input fields or floating within the field.', 'woo-cc'),
+                        'description' => __('Select the position of labels, either above input fields or floating within the field.', 'cc-styles'),
                         'selector' => 'labels',
-                        'label'   => __('Labels Position', 'woo-cc'),
+                        'label'   => __('Labels Position', 'cc-styles'),
                         'options' => [
-                            'above' => __( 'Above', 'woo-cc' ),
-                            'floating' => __( 'Floating', 'woo-cc' ),
+                            'above' => __( 'Above', 'cc-styles' ),
+                            'floating' => __( 'Floating', 'cc-styles' ),
                         ],
                     ],
                     [
                         'id'       => 'colorPrimary',
                         'type'     => 'color',
-                        'description' => __('Primary color for borders, active, focus etc.', 'woo-cc'),
+                        'description' => __('Primary color for borders, active, focus etc.', 'cc-styles'),
                         'selector' => 'variables',
-                        'label'   => __('Primary Color', 'woo-cc'),
+                        'label'   => __('Primary Color', 'cc-styles'),
                     ],
                     [
                         'id'      => 'colorText',
                         'type'    => 'color',
-                        'description' => __('Text color for elements, input fields, used as a base color for inputs, labels tabs etc.', 'woo-cc'),
+                        'description' => __('Text color for elements, input fields, used as a base color for inputs, labels tabs etc.', 'cc-styles'),
                         'selector' => 'variables',
-                        'label'   => __('Background Color', 'woo-cc'),
+                        'label'   => __('Background Color', 'cc-styles'),
                     ],
                     [
                         'id'       => 'colorDanger',
                         'type'     => 'color',
-                        'description' => __('Input fields error color', 'woo-cc'),
+                        'description' => __('Input fields error color', 'cc-styles'),
                         'selector' => 'variables',
-                        'label'   => __('Error Color', 'woo-cc'),
+                        'label'   => __('Error Color', 'cc-styles'),
                     ],
                     [
                         'id'      => 'fontSizeBase',
                         'type'    => 'text',
-                        'description' => __('Base font size, modifled and then used by input, labels etc', 'woo-cc'),
+                        'description' => __('Base font size, modifled and then used by input, labels etc', 'cc-styles'),
                         'default' => '16px',
                         'selector' => 'variables',
-                        'label'   => __('Font Size', 'woo-cc'),
+                        'label'   => __('Font Size', 'cc-styles'),
                     ],
                     [
                         'id'      => 'lineHeight',
                         'type'    => 'text',
-                        'description' => __('Text line height for input fields', 'woo-cc'),
+                        'description' => __('Text line height for input fields', 'cc-styles'),
                         'selector' => [ '.Input', '.Input--invalid'],
-                        'label'   => __('Line Height', 'woo-cc'),
+                        'label'   => __('Line Height', 'cc-styles'),
                     ],
                     [
                         'id'      => 'borderRadius',
                         'type'    => 'text',
-                        'description' => __('Border radius for input fields', 'woo-cc'),
+                        'description' => __('Border radius for input fields', 'cc-styles'),
                         'selector' => '.Input',
-                        'label'   => __('Border Radius', 'woo-cc'),
+                        'label'   => __('Border Radius', 'cc-styles'),
                     ],
                     [
                         'id'      => 'spacingUnit',
                         'type'    => 'text',
-                        'description' => __('Base spacing unit for inputs and labels, padding and margins etc.', 'woo-cc'),
+                        'description' => __('Base spacing unit for inputs and labels, padding and margins etc.', 'cc-styles'),
                         'selector' => 'variables',
-                        'label'   => __('Spacing', 'woo-cc'),
+                        'label'   => __('Spacing', 'cc-styles'),
                     ],
                     
                 ],
             ],
             'advanced' => [
-                'label' => __( 'Advanced Styles', 'woo-cc' ),
+                'label' => __( 'Advanced Styles', 'cc-styles' ),
                 'fields' => [
                     [
                         'id' => 'input_color',
                         'css_property' => 'color',
                         'type' => 'color',
                         'selector' => [ '.Input', '.Input--invalid' ],
-                        'label' => __('Input Text Color', 'woo-cc' ),
-                        'description' => __('Input field text color, will be applied to credit card nummber input, expiry and security code', 'woo-cc' ),
+                        'label' => __('Input Text Color', 'cc-styles' ),
+                        'description' => __('Input field text color, will be applied to credit card nummber input, expiry and security code', 'cc-styles' ),
                         'default' => '',
                     ],
                     [
@@ -128,8 +128,8 @@ class CC_Style_Options {
                         'css_property' => 'backgroundColor',
                         'type' => 'color',
                         'selector' => [ '.Input', '.Input--invalid' ],
-                        'label' => __('Input Background Color', 'woo-cc' ),
-                        'description' => __('Input field background color, applied to credit card nummber input, expiry and security code fields.', 'woo-cc' ),
+                        'label' => __('Input Background Color', 'cc-styles' ),
+                        'description' => __('Input field background color, applied to credit card nummber input, expiry and security code fields.', 'cc-styles' ),
                         'default' => '',
                     ],
                     [
@@ -138,9 +138,9 @@ class CC_Style_Options {
                         'selector' => [ '.Input', '.Input--invalid' ],
                         'validate' => 'spacing',
                         'css_property' => [ 'paddingTop', 'paddingLeft', 'paddingBottom', 'paddingRight' ],
-                        'label' => __('Input Padding', 'woo-cc' ),
+                        'label' => __('Input Padding', 'cc-styles' ),
                         'options' => [ 'top', 'left', 'bottom', 'right' ],
-                        'description' => __('Input field padding, applied to credit card nummber input, expiry and security code fields.', 'woo-cc' ),
+                        'description' => __('Input field padding, applied to credit card nummber input, expiry and security code fields.', 'cc-styles' ),
                         'default' => '',
                     ],
                     [
@@ -149,9 +149,9 @@ class CC_Style_Options {
                         'selector' => [ '.Input', '.Input--invalid' ],
                         'validate' => 'spacing',
                         'css_property' => [ 'marginTop', 'marginLeft', 'marginBottom', 'marginRight' ],
-                        'label' => __('Input Margin', 'woo-cc' ),
+                        'label' => __('Input Margin', 'cc-styles' ),
                         'options' => [ 'top', 'left', 'bottom', 'right' ],
-                        'description' => __('Input field margin, will be applied to credit card nummber input, expiry and security code', 'woo-cc' ),
+                        'description' => __('Input field margin, will be applied to credit card nummber input, expiry and security code', 'cc-styles' ),
                         'default' => '',
                     ],
                     [
@@ -160,27 +160,27 @@ class CC_Style_Options {
                         'selector' => [ '.Input', '.Input--invalid' ],
                         'validate' => 'spacing',
                         'css_property' => [ 'borderTop', 'borderLeft', 'borderBottom', 'borderRight' ],
-                        'label' => __('Input Border Width', 'woo-cc' ),
-                        'description' => __('Input field border, select a valid CSS unit as well', 'woo-cc' ),
+                        'label' => __('Input Border Width', 'cc-styles' ),
+                        'description' => __('Input field border, select a valid CSS unit as well', 'cc-styles' ),
                         'options' => [ 'top', 'left', 'bottom', 'right' ],
                         'default' => '',
                     ],
                     [
                         'id'      => 'borderStyle',
                         'type'    => 'select',
-                        'description' => __('Select the border style for input fields.', 'woo-cc'),
+                        'description' => __('Select the border style for input fields.', 'cc-styles'),
                         'selector' => [ '.Input', '.Input--invalid' ],
-                        'label'   => __('Border Style', 'woo-cc'),
+                        'label'   => __('Border Style', 'cc-styles'),
                         'default' => 'solid',
                         'options' => [
-                            'none' => __( 'None', 'woo-cc' ),
-                            'solid' => __( 'Solid', 'woo-cc' ),
-                            'dashed' => __( 'Dashed', 'woo-cc' ),
-                            'dotted' => __( 'Dotted', 'woo-cc' ),
-                            'double' => __( 'Double', 'woo-cc' ),
-                            'groove' => __( 'Groove', 'woo-cc' ),
-                            'inset' => __( 'Inset', 'woo-cc' ),
-                            'ridge' => __( 'Ridge', 'woo-cc' ),
+                            'none' => __( 'None', 'cc-styles' ),
+                            'solid' => __( 'Solid', 'cc-styles' ),
+                            'dashed' => __( 'Dashed', 'cc-styles' ),
+                            'dotted' => __( 'Dotted', 'cc-styles' ),
+                            'double' => __( 'Double', 'cc-styles' ),
+                            'groove' => __( 'Groove', 'cc-styles' ),
+                            'inset' => __( 'Inset', 'cc-styles' ),
+                            'ridge' => __( 'Ridge', 'cc-styles' ),
                         ],
                     ],
                     [
@@ -188,8 +188,8 @@ class CC_Style_Options {
                         'css_property' => 'borderColor',
                         'type' => 'color',
                         'selector' => [ '.Input', '.Input--invalid' ],
-                        'label' => __('Input Border Color', 'woo-cc' ),
-                        'description' => __('Input field border color, will be applied to credit card nummber input, expiry and security code', 'woo-cc' ),
+                        'label' => __('Input Border Color', 'cc-styles' ),
+                        'description' => __('Input field border color, will be applied to credit card nummber input, expiry and security code', 'cc-styles' ),
                         'default' => '',
                     ],
                     [
@@ -197,8 +197,8 @@ class CC_Style_Options {
                         'type' => 'color',
                         'css_property' => 'color',
                         'selector' => '.Label',
-                        'description' => __('Label text color, will be applied to credit card nummber input, expiry and security code', 'woo-cc' ),
-                        'label' => __( 'Labels Color', 'woo-cc' ),
+                        'description' => __('Label text color, will be applied to credit card nummber input, expiry and security code', 'cc-styles' ),
+                        'label' => __( 'Labels Color', 'cc-styles' ),
                         'default' => '',
                     ],
                     [
@@ -207,8 +207,8 @@ class CC_Style_Options {
                         'selector' => '.Label',
                         'validate' => 'spacing',
                         'css_property' => [ 'paddingTop', 'paddingLeft', 'paddingBottom', 'paddingRight' ],
-                        'label' => __('Labels Padding', 'woo-cc' ),
-                        'description' => __('Labels Padding, select a valid CSS unit as well', 'woo-cc' ),
+                        'label' => __('Labels Padding', 'cc-styles' ),
+                        'description' => __('Labels Padding, select a valid CSS unit as well', 'cc-styles' ),
                         'options' => [ 'top', 'left', 'bottom', 'right' ],
                         'default' => '',
                     ],
@@ -218,8 +218,8 @@ class CC_Style_Options {
                         'selector' => '.Label',
                         'validate' => 'spacing',
                         'css_property' => [ 'marginTop', 'marginLeft', 'marginBottom', 'marginRight' ],
-                        'label' => __('Labels Margin', 'woo-cc' ),
-                        'description' => __('Labels margin, select a valid CSS unit as well', 'woo-cc' ),
+                        'label' => __('Labels Margin', 'cc-styles' ),
+                        'description' => __('Labels margin, select a valid CSS unit as well', 'cc-styles' ),
                         'options' => [ 'top', 'left', 'bottom', 'right' ],
                         'default' => '',
                     ],
@@ -247,7 +247,7 @@ class CC_Style_Options {
     /**
 	 * To clear transients
 	 */
-    public function clear_woo_appearance_transients( $option_name, $old_value, $new_value ) {
+    public function clear_appearance_transients( $option_name, $old_value, $new_value ) {
 
         // Check if the option that was saved is related to your Awesome Options framework
         if ( $option_name === self::$option_name ) {
@@ -269,4 +269,4 @@ class CC_Style_Options {
 }
 
 // Initialize the settings class
-new CC_Style_Options();
+new CC_Styles_Options();
