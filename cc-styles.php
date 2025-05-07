@@ -11,7 +11,7 @@
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Domain Path:       /languages
- * Text Domain:       cc-styles
+ * Text Domain:       cc-styles-woo
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -19,8 +19,10 @@ defined( 'ABSPATH' ) || exit;
 if ( ! defined( 'CC_STYLES_PATH' ) ) {
     define( 'CC_STYLES_PATH', plugin_dir_path(__FILE__) );
 }
+if ( ! defined( 'CC_STYLES_PATH' ) ) {
+    define( 'CC_STYLES_PATH', plugin_dir_url(__FILE__) );
+}
 
 // Include core files
-require_once CC_STYLES_PATH . 'inc/class-cc-styles-options.php';
-require_once CC_STYLES_PATH . 'inc/class-cc-styles-appearance-engine.php';
-require_once CC_STYLES_PATH . 'inc/class-cc-styles-frontend.php';
+require_once CC_STYLES_PATH . 'inc/class-cc-styles-base.php';
+new Woo_CC_Styles_Loader();

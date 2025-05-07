@@ -24,7 +24,7 @@ class Woo_CC_Styles_Loader {
 	/**
 	 * Plugin text domain
 	 */
-	const TEXT_DOMAIN = 'cc-styles';
+	const TEXT_DOMAIN = 'cc-styles-woo';
 
 	/**
 	 * Plugin basename
@@ -46,7 +46,7 @@ class Woo_CC_Styles_Loader {
 	 * Plugin deactivation callback
 	 */
 	public function on_deactivate() {
-		// Cleanup tasks if needed (do not delete options unless uninstalling).
+		CC_Styles_Options::clear_woo_transients();
 	}
 
 	/**
@@ -55,7 +55,6 @@ class Woo_CC_Styles_Loader {
 	public function init() {
 		$this->load_textdomain();
 		$this->load_dependencies();
-		$this->init_plugin();
 	}
 
 	/**
@@ -73,19 +72,9 @@ class Woo_CC_Styles_Loader {
 	 * Include required class files
 	 */
 	protected function load_dependencies() {
-		require_once plugin_dir_path( __DIR__ ) . 'includes/class-stripe-style-injector.php';
-		require_once plugin_dir_path( __DIR__ ) . 'includes/class-appearance-style-manager.php';
-		require_once plugin_dir_path( __DIR__ ) . 'includes/class-options.php';
-	}
-
-	/**
-	 * Bootstrap all plugin components
-	 */
-	protected function init_plugin() {
-		$fields  = CC_Style_Options::get_fields();
-		$options = CC_Style_Options::get_all_options();
-
-		$style_manager = new StripeAppearanceStyleManager( $options, $fields );
-		new Stripe_Style_Injector( $style_manager );
+		require_once CC_STYLES_PATH . 'inc/options/awesome-options-framework.php';
+		require_once CC_STYLES_PATH . 'inc/class-cc-styles-options.php';
+		require_once CC_STYLES_PATH . 'inc/class-cc-styles-appearance-engine.php';
+		require_once CC_STYLES_PATH . 'inc/class-cc-styles-frontend.php';
 	}
 }

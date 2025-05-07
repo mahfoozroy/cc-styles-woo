@@ -1,0 +1,233 @@
+/* General wrapper */
+#aof-app {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    margin: 30px 10px 30px;
+    width: calc(100% - 80px);
+  }
+  #aof-app h1 {
+    margin-bottom: 40px;
+  }
+  .aof-inner-wrap {
+    margin: 20px;
+   }
+  /* Layout control */
+  #aof-app.vertical {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* Tabs container */
+  #aof-app .aof-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  #aof-app.vertical .aof-tabs {
+    flex-direction: column;
+    border: none;
+    border-right: 2px solid #e2e8f0;
+    min-width: 200px;
+    margin-bottom: 0;
+  }
+  
+  /* Single tab */
+  #aof-app .aof-tab {
+    padding: 10px 16px;
+    background: #ebebeb;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 6px 6px 0 0;
+    color: #333;
+    font-size: 16px;
+  }
+  
+  #aof-app.vertical .aof-tab {
+    border-radius: 4px;
+    border: none;
+    text-align: left;
+    border-left: 4px solid transparent;
+    padding: 12px 14px;
+    font-weight: 500;
+    background: transparent;
+  }
+  
+  #aof-app .aof-tab:hover {
+    background: #f1f3f5;
+  }
+  
+  #aof-app .aof-tab.active {
+    background: #ffffff;
+    font-weight: 600;
+    border-bottom: 2px solid #ffffff;
+  }
+  
+  #aof-app.vertical .aof-tab.active {
+    background: #ffffff;
+    border-left: 4px solid #0073aa;
+    color: #0073aa;
+  }
+  
+  /* Tab content area */
+  #aof-app .aof-tab-content-area {
+    width: 100%;
+    max-width: 684px;
+  }
+  #aof-app .aof-form-inner-vertical {
+    display: flex;
+    margin-top: 40px;
+    flex-direction: row;
+    gap: 40px;
+}
+  #aof-app.vertical .aof-tab-content-area {
+    flex: 1;
+  }
+  
+  /* Tab content visibility */
+  #aof-app .aof-tab-content {
+    display: none;
+    padding-top: 5px;
+  }
+  #aof-app .aof-tab-content.active {
+    display: block;
+  }
+  
+  /* Field & Form Styling */
+  .aof-wrap input[type="text"],
+  .aof-wrap input[type="number"],
+  .aof-wrap input[type="email"],
+  .aof-wrap input[type="url"],
+  .aof-wrap select,
+  .aof-wrap textarea {
+    width: 20rem;
+    padding: 4px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 40px;
+  }
+  
+  .aof-wrap .aof-spacing-input input{
+    width: 5rem;
+  }
+  .aof-wrap input[type="submit"] {
+    background: #0073aa;
+    color: #fff;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .aof-wrap input[type="submit"]:hover {
+    background: #005d8f;
+  }
+  .aof-wrap .form-table td {
+    vertical-align: top;
+    padding-block: 10px;
+  }
+  
+  #aof-app.vertical form {
+    border-top: 2px solid #e2e8f0;
+  }
+
+  #aof-app.vertical form .aof-form-inner-vertical {
+    margin-top: 0;
+    padding-top: 40px;
+  }
+  /* Layout */
+.aof-wrap {
+	padding: 30px;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.06);
+}
+
+.aof-inner-wrap h1 {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+/* Tabs */
+
+.aof-tab {
+	padding: 12px 16px;
+	cursor: pointer;
+	border-bottom: 1px solid #f1f1f1;
+	background: #fafafa;
+	transition: all 0.2s ease;
+}
+
+.aof-tab:hover,
+.aof-tab.active {
+	background: #f0f0f0;
+	font-weight: bold;
+}
+
+.aof-form-inner-vertical {
+	display: flex;
+}
+
+.aof-tab-content-area {
+	flex: 1;
+	padding: 20px;
+}
+
+/* Field blocks */
+.aof-field {
+	margin-bottom: 24px;
+  display: flex;
+  flex-direction: row;
+}
+
+.aof-label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 6px;
+}
+
+.aof-description {
+	margin-top: 6px;
+	font-size: 12px;
+	color: #666;
+}
+
+.aof-spacing-wrapper {
+	display: flex;
+	gap: 10px;
+	align-items: flex-end;
+	flex-wrap: wrap;
+}
+.aof-spacing-input {
+	flex: 1;
+	min-width: 70px;
+}
+.aof-spacing-unit {
+	min-width: 80px;
+}
+.aof-spacing-unit select {
+	width: 100%;
+}
+
+.aof-radio {
+	display: inline-block;
+	margin-right: 10px;
+}
+.aof-field-inner, .aof-field-type{
+  width: 70%
+}
+.aof-field-label {
+  width: 30%;
+  font-size: 15px;
+}
+.aof-field-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
