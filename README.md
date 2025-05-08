@@ -1,19 +1,13 @@
-# cc-styles-woo
-
 === Woo Credit Card Field Styles ===
-Contributors: Roy Mahfooz
-Donate link: https://www.roymahfooz.com/
-Requires at least: 5.8
-Requires PHP: 5.6
+Contributors: roymahfooz  
+Donate link: https://www.roymahfooz.com/  
+Tags: stripe, credit card, woocommerce, appearance, style, payments  
+Requires at least: 5.8  
+Tested up to: 6.5  
+Requires PHP: 7.0  
+Stable tag: 1.0.0  
+License: GPLv2 or later  
+License URI: https://www.gnu.org/licenses/gpl-2.0.html  
 
-A woo addon to style stripe credit/debit card fields
+A lightweight WooCommerce add-on to style Stripe credit/debit card fields using Stripe Elements Appearance API. Fully compatible with WooPayments and Stripe Payment Gateway for WooCommerce.
 
-
-== Description ==
-The plugin can be used to style styipe credit card fields for woo payments plugin.
-
-== Installation ==
-- After login to the admin panel, click on Plugins->Add New
-- Click on `Upload Plugin` and upload the `Registration Data` build-in zip format.
-- Click Submit and activate the plugin after that
-You are all Done!

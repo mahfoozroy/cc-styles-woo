@@ -1,4 +1,8 @@
 <?php
+/**
+ * Options definitions class.
+ *
+ */
 defined( 'ABSPATH' ) || exit;
 
 class CC_Styles_Options {
