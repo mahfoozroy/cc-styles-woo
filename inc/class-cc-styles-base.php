@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Main Plugin Loader Class
  */
-class Woo_CC_Styles_Loader {
+class Woo_CC_Styles_Base {
 
 	/**
 	 * Plugin version
@@ -27,19 +27,14 @@ class Woo_CC_Styles_Loader {
 	const TEXT_DOMAIN = 'cc-styles-woo';
 
 	/**
-	 * Plugin basename
-	 */
-	protected $basename;
-
-	/**
 	 * Constructor
 	 */
 	public function __construct() {
-		$this->basename = plugin_basename( __FILE__ );
 
-		register_deactivation_hook( dirname( __DIR__ ) . '/cc-styles.php', [ $this, 'on_deactivate' ] );
+		register_deactivation_hook( CC_STYLES_PATH . 'cc-styles.php', [ $this, 'on_deactivate' ] );
 
 		add_action( 'plugins_loaded', [ $this, 'init' ] );
+		add_action( 'init', [ $this, 'load_textdomain' ], 99 );
 	}
 
 	/**
@@ -53,25 +48,24 @@ class Woo_CC_Styles_Loader {
 	 * Initialize the plugin
 	 */
 	public function init() {
-		$this->load_textdomain();
 		$this->load_dependencies();
 	}
 
 	/**
 	 * Load plugin text domain
 	 */
-	protected function load_textdomain() {
+	public function load_textdomain() {
 		load_plugin_textdomain(
 			self::TEXT_DOMAIN,
 			false,
-			dirname( plugin_basename( dirname( __DIR__ ) . '/cc-styles-woo.php' ) ) . '/languages'
+			CC_STYLES_PATH . 'languages'
 		);
 	}
 
 	/**
 	 * Include required class files
 	 */
-	protected function load_dependencies() {
+	public function load_dependencies() {
 		require_once CC_STYLES_PATH . 'inc/options/awesome-options-framework.php';
 		require_once CC_STYLES_PATH . 'inc/class-cc-styles-options.php';
 		require_once CC_STYLES_PATH . 'inc/class-cc-styles-appearance-engine.php';

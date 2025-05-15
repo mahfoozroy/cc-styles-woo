@@ -19,10 +19,10 @@ defined( 'ABSPATH' ) || exit;
 if ( ! defined( 'CC_STYLES_PATH' ) ) {
     define( 'CC_STYLES_PATH', plugin_dir_path(__FILE__) );
 }
-if ( ! defined( 'CC_STYLES_PATH' ) ) {
-    define( 'CC_STYLES_PATH', plugin_dir_url(__FILE__) );
+if ( ! defined( 'CC_STYLES_URL' ) ) {
+    define( 'CC_STYLES_URL', plugin_dir_url(__FILE__) );
 }
 
 // Include core files
 require_once CC_STYLES_PATH . 'inc/class-cc-styles-base.php';
-new Woo_CC_Styles_Loader();
+new Woo_CC_Styles_Base();
