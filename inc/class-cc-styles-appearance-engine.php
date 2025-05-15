@@ -27,7 +27,6 @@ class CC_Styles_Appearance_Engine {
 	 */
 	public function get_appearance() {
 		return [
-			'theme'     => $this->appearance['theme'] ?? 'stripe',
             'labels'     => $this->appearance['labels'] ?? 'above',
 			'variables' => $this->appearance['variables'] ?? [],
 			'rules'     => $this->appearance['rules'] ?? [],
@@ -41,7 +40,7 @@ class CC_Styles_Appearance_Engine {
 	 * @return array
 	 */
 	protected function sanitize_appearance_options( array $options ) {
-		$valid_keys = [ 'theme', 'variables', 'rules', 'labels' ];
+		$valid_keys = [ 'variables', 'rules', 'labels' ];
 
 		// Only keep known appearance keys
 		return array_filter(
@@ -84,9 +83,7 @@ class CC_Styles_Appearance_Engine {
 					continue;
 				}
 
-				if ( $selector === 'theme' ) {
-					$appearance['theme'] = $value;
-				} elseif ( $selector === 'labels' ) {
+				if ( $selector === 'labels' ) {
 					$appearance['labels'] = $value;
 				} elseif ( $selector === 'variables' ) {
 					$appearance['variables'][ $property ] = $value;

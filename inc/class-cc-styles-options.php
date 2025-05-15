@@ -39,19 +39,6 @@ class CC_Styles_Options {
                 'label' => __('General', 'cc-styles-woo'),
                 'fields' => [
                     [
-                        'id'      => 'theme',
-                        'type'    => 'select',
-                        'description' => __('Theme', 'cc-styles-woo'),
-                        'selector'=> 'theme',
-                        'label'   => __('Theme', 'cc-styles-woo'),
-                        'description'   => __('Credit card fields base theme, flat, night or stripe default', 'cc-styles-woo' ),
-                        'options' => [
-                            'stripe' => __( 'Stripe', 'cc-styles-woo' ),
-                            'night' => __( 'Night', 'cc-styles-woo' ),
-                            'flat' => __( 'Flat', 'cc-styles-woo' ),
-                        ],
-                    ],
-                    [
                         'id'      => 'labels',
                         'type'    => 'select',
                         'description' => __('Select the position of labels, either above input fields or floating within the field.', 'cc-styles-woo'),

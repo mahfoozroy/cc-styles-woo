@@ -50,9 +50,6 @@ class Woo_CC_Styles_Frontend {
 		$custom = $this->style_engine->get_appearance();
 
 		// Set theme if available.
-		if ( ! empty( $custom['theme'] ) ) {
-			$appearance->theme = $custom['theme'];
-		}
 		if ( ! empty( $custom['labels'] ) ) {
 			$appearance->labels = $custom['labels'];
 		}
