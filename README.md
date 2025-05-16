@@ -1,4 +1,4 @@
-=== Woo Credit Card Field Styles ===
+=== Credit Card Field Styles For Woo ===
 Contributors: roymahfooz  
 Donate link: https://www.roymahfooz.com/  
 Tags: stripe, credit card, woocommerce, appearance, style, payments  

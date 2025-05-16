@@ -26,7 +26,7 @@ if ( ! class_exists( 'Awesome_Options_Framework' ) ) {
 		 */
 		public function __construct( $args ) {
 			$this->option_name = $args['option_name'] ?? 'awesome_options_framework_settings';
-			$this->page_title  = $args['page_title'] ?? __( 'Awesome Options Framework', 'aof' );
+			$this->page_title  = $args['page_title'] ?? __( 'Awesome Options Framework', 'cc-styles-woo' );
 			$this->menu_slug   = $args['menu_slug'] ?? 'awesome-options-framework';
 			$this->menu_icon   = $args['menu_icon'] ?? 'dashicons-admin-generic';
 			$this->fields      = $args['fields'] ?? [];
@@ -43,7 +43,7 @@ if ( ! class_exists( 'Awesome_Options_Framework' ) ) {
 		 * Load plugin textdomain.
 		 */
 		public function load_textdomain() {
-			load_plugin_textdomain( 'aof', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+			load_plugin_textdomain( 'cc-styles-woo', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 		}
 
 		/**
@@ -71,7 +71,7 @@ if ( ! class_exists( 'Awesome_Options_Framework' ) ) {
 				foreach ( $this->sections as $key => $section ) {
 					add_settings_section(
 						$key,
-						esc_html__( $section['label'], 'aof' ),
+						esc_html__( $section['label'], 'cc-styles-woo' ),
 						null,
 						$this->option_name . '_' . $key
 					);
@@ -92,7 +92,7 @@ if ( ! class_exists( 'Awesome_Options_Framework' ) ) {
 				foreach ( $this->fields as $field ) {
 					add_settings_field(
 						esc_attr( $field['id'] ),
-						esc_html__( $field['label'], 'aof' ),
+						esc_html__( $field['label'], 'cc-styles-woo' ),
 						[ $this, 'render_field' ],
 						$this->option_name,
 						'awesome_options',
@@ -176,16 +176,16 @@ if ( ! class_exists( 'Awesome_Options_Framework' ) ) {
 			$label   = $field['label'] ?? '';
 			$desc    = $field['description'] ?? '';
 		
-			echo "<div class='aof-field-wrap aof-type-{$type}'>";
+			echo '<div class="aof-field-wrap aof-type-' . esc_attr( $type ) . '">';
 		
 			// Label
 			echo '<div class="aof-field-label">';
 			if ( $label ) {
-				echo "<label for='{$field['id']}' class='aof-label'>" . esc_html__( $label, 'aof' ) . "</label>";
+				echo '<label for="' . esc_attr( $field['id'] ) . '" class="aof-label">' . esc_html__( $label, 'cc-styles-woo' ) . '</label>';
 			}
 			// Description
 			if ( $desc ) {
-				echo '<p class="aof-description">' . esc_html__( $desc, 'aof' ) . '</p>';
+				echo '<p class="aof-description">' . esc_html__( $desc, 'cc-styles-woo' ) . '</p>';
 			}
 			echo '</div>';
 			echo '<div class="aof-field-inner">';
@@ -207,7 +207,7 @@ if ( ! class_exists( 'Awesome_Options_Framework' ) ) {
 				case 'select':
 					echo "<select id='{$field['id']}' name='{$this->option_name}[{$field['id']}]'>";
 					foreach ( $field['options'] as $key => $label ) {
-						echo "<option value='" . esc_attr( $key ) . "' " . selected( $value, $key, false ) . ">" . esc_html__( $label, 'aof' ) . "</option>";
+						echo "<option value='" . esc_attr( $key ) . "' " . selected( $value, $key, false ) . ">" . esc_html__( $label, 'cc-styles-woo' ) . "</option>";
 					}
 					echo "</select>";
 					break;
@@ -222,7 +222,7 @@ if ( ! class_exists( 'Awesome_Options_Framework' ) ) {
 		
 				case 'radio':
 					foreach ( $field['options'] as $key => $label ) {
-						echo "<label class='aof-radio'><input type='radio' name='{$this->option_name}[{$field['id']}]' value='" . esc_attr( $key ) . "' " . checked( $value, $key, false ) . "> " . esc_html__( $label, 'aof' ) . "</label><br>";
+						echo "<label class='aof-radio'><input type='radio' name='{$this->option_name}[{$field['id']}]' value='" . esc_attr( $key ) . "' " . checked( $value, $key, false ) . "> " . esc_html__( $label, 'cc-styles-woo' ) . "</label><br>";
 					}
 					break;
 		
@@ -244,7 +244,7 @@ if ( ! class_exists( 'Awesome_Options_Framework' ) ) {
 						</div>";
 					}
 					echo "<div class='aof-spacing-unit'>
-							<label>" . __( 'Unit', 'aof' ) . "</label>
+							<label>" . __( 'Unit', 'cc-styles-woo' ) . "</label>
 							<select name='{$this->option_name}[{$field['id']}][unit]'>";
 					foreach ( $units as $u ) {
 						echo "<option value='{$u}' " . selected( $unit, $u, false ) . ">{$u}</option>";
@@ -290,7 +290,7 @@ if ( ! class_exists( 'Awesome_Options_Framework' ) ) {
 				// Tabs (top or left)
 				echo '<div class="aof-tabs">';
 				foreach ( $this->sections as $key => $section ) {
-					echo '<div class="aof-tab" data-tab="tab_' . esc_attr( $key ) . '">' . esc_html__( $section['label'], 'aof' ) . '</div>';
+					echo '<div class="aof-tab" data-tab="tab_' . esc_attr( $key ) . '">' . esc_html__( $section['label'], 'cc-styles-woo' ) . '</div>';
 				}
 				echo '</div>';
 		
