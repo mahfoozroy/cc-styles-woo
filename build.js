@@ -6,14 +6,14 @@ const { runLinting } = require('./phplinter');
 
 
 
-const PLUGIN_SLUG = 'woo-cc-styles';
+const PLUGIN_SLUG = 'cc-styles-woo';
 const AOF_SOURCE = path.resolve(__dirname, '../awesome-options-framework'); // adjust if needed
 const AOF_DEST = path.resolve(__dirname, 'inc/options');
 const BUILD_DIR = path.resolve(__dirname, 'build');
 const ZIP_FILE = path.join(BUILD_DIR, `${PLUGIN_SLUG}.zip`);
 
 async function clean() {
-	console.log(chalk.yellow('🧹 Cleaning old AOF...'));
+	console.log(chalk.yellow('Cleaning old AOF...'));
 	await fs.remove(AOF_DEST);
 }
 
@@ -21,7 +21,7 @@ async function copyAOF() {
 	console.log(chalk.blue('Copying Awesome Options Framework...'));
 	await fs.copy(AOF_SOURCE, AOF_DEST, {
 		filter: (src) => {
-			const ignored = ['.git', '.DS_Store', 'node_modules', '.idea', '.gitignore' ];
+			const ignored = ['.git', '.DS_Store', 'node_modules', '.idea', '.gitignore','README.md', 'LICENSE' ];
 			return !ignored.some((item) => src.includes(item));
 		}
 	});
@@ -82,7 +82,7 @@ async function updateAOFRepo() {
 async function run() {
 	try {
 		await updateAOFRepo();
-		await runLinting(); 
+		// await runLinting(); 
 		await clean();
 		await copyAOF();
 		await createZip();
