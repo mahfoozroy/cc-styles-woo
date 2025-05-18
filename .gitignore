@@ -3,3 +3,4 @@
 build/
 *.zip
 *.tar.gz
+.vscode/settings.json

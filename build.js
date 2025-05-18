@@ -69,7 +69,7 @@ const simpleGit = require('simple-git');
 const git = simpleGit(AOF_SOURCE);
 
 async function updateAOFRepo() {
-	console.log(chalk.cyan('🔄 Pulling latest Awesome Options Framework from GitHub...'));
+	console.log(chalk.cyan('Pulling latest Awesome Options Framework from GitHub...'));
 	try {
 		await git.fetch();
 		await git.pull('origin', 'main'); 
@@ -82,7 +82,7 @@ async function updateAOFRepo() {
 async function run() {
 	try {
 		await updateAOFRepo();
-		// await runLinting(); 
+		await runLinting(); 
 		await clean();
 		await copyAOF();
 		await createZip();

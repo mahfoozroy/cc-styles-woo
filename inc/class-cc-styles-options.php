@@ -1,40 +1,46 @@
 <?php
 /**
  * Options definitions class.
- *
  */
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
-class CC_Styles_Options {
-	protected static $option_name = 'woo_cc_styles';
-	protected $settings;
+class CC_Styles_Options
 
-	public function __construct() {
-		$this->settings = new Awesome_Options_Framework( [
-			'option_name' => self::$option_name,
-			'page_title'  => esc_html__( 'CC Styles Woo', 'cc-styles-woo' ),
-			'menu_slug'   => 'cc_styles',
-			'menu_icon'   => 'dashicons-admin-appearance',
-			'tab_layout'  => 'horizontal',
-			'sections'    => self::get_fields(),
-		] );
+{
+    protected static $option_name = 'woo_cc_styles';
+    protected $settings;
+
+    public function __construct()
+    {
+        $this->settings = new Awesome_Options_Framework(
+            [
+            'option_name' => self::$option_name,
+            'page_title'  => esc_html__('CC Styles Woo', 'cc-styles-woo'),
+            'menu_slug'   => 'cc_styles',
+            'menu_icon'   => 'dashicons-admin-appearance',
+            'tab_layout'  => 'horizontal',
+            'sections'    => self::get_fields(),
+            ] 
+        );
 
         // Clear woo transient caches for appearance on save
         add_action('update_option', [ $this, 'clear_appearance_transients' ], 99, 3);
-	}
+    }
 
-	/**
-	 * Static getter for option name
-	 */
-	public static function get_option_name() {
-		return self::$option_name;
-	}
+    /**
+     * Static getter for option name
+     */
+    public static function get_option_name()
+    {
+        return self::$option_name;
+    }
 
-	/**
-	 * Static access to field definitions
-	 */
-	public static function get_fields() {
-		return [
+    /**
+     * Static access to field definitions
+     */
+    public static function get_fields()
+    {
+        return [
             'general' => [
                 'label' => esc_html__('General', 'cc-styles-woo'),
                 'fields' => [
@@ -45,8 +51,8 @@ class CC_Styles_Options {
                         'selector' => 'labels',
                         'label'   => esc_html__('Labels Position', 'cc-styles-woo'),
                         'options' => [
-                            'above' => esc_html__( 'Above', 'cc-styles-woo' ),
-                            'floating' => esc_html__( 'Floating', 'cc-styles-woo' ),
+                            'above' => esc_html__('Above', 'cc-styles-woo'),
+                            'floating' => esc_html__('Floating', 'cc-styles-woo'),
                         ],
                     ],
                     [
@@ -103,15 +109,15 @@ class CC_Styles_Options {
                 ],
             ],
             'advanced' => [
-                'label' => esc_html__( 'Advanced Styles', 'cc-styles-woo' ),
+                'label' => esc_html__('Advanced Styles', 'cc-styles-woo'),
                 'fields' => [
                     [
                         'id' => 'input_color',
                         'css_property' => 'color',
                         'type' => 'color',
                         'selector' => [ '.Input', '.Input--invalid' ],
-                        'label' => esc_html__('Input Text Color', 'cc-styles-woo' ),
-                        'description' => esc_html__('Input field text color, will be applied to credit card nummber input, expiry and security code', 'cc-styles-woo' ),
+                        'label' => esc_html__('Input Text Color', 'cc-styles-woo'),
+                        'description' => esc_html__('Input field text color, will be applied to credit card nummber input, expiry and security code', 'cc-styles-woo'),
                         'default' => '',
                     ],
                     [
@@ -119,8 +125,8 @@ class CC_Styles_Options {
                         'css_property' => 'backgroundColor',
                         'type' => 'color',
                         'selector' => [ '.Input', '.Input--invalid' ],
-                        'label' => esc_html__('Input Background Color', 'cc-styles-woo' ),
-                        'description' => esc_html__('Input field background color, applied to credit card nummber input, expiry and security code fields.', 'cc-styles-woo' ),
+                        'label' => esc_html__('Input Background Color', 'cc-styles-woo'),
+                        'description' => esc_html__('Input field background color, applied to credit card nummber input, expiry and security code fields.', 'cc-styles-woo'),
                         'default' => '',
                     ],
                     [
@@ -129,9 +135,9 @@ class CC_Styles_Options {
                         'selector' => [ '.Input', '.Input--invalid' ],
                         'validate' => 'spacing',
                         'css_property' => [ 'paddingTop', 'paddingLeft', 'paddingBottom', 'paddingRight' ],
-                        'label' => esc_html__('Input Padding', 'cc-styles-woo' ),
+                        'label' => esc_html__('Input Padding', 'cc-styles-woo'),
                         'options' => [ 'top', 'left', 'bottom', 'right' ],
-                        'description' => esc_html__('Input field padding, applied to credit card nummber input, expiry and security code fields.', 'cc-styles-woo' ),
+                        'description' => esc_html__('Input field padding, applied to credit card nummber input, expiry and security code fields.', 'cc-styles-woo'),
                         'default' => '',
                     ],
                     [
@@ -140,9 +146,9 @@ class CC_Styles_Options {
                         'selector' => [ '.Input', '.Input--invalid' ],
                         'validate' => 'spacing',
                         'css_property' => [ 'marginTop', 'marginLeft', 'marginBottom', 'marginRight' ],
-                        'label' => esc_html__('Input Margin', 'cc-styles-woo' ),
+                        'label' => esc_html__('Input Margin', 'cc-styles-woo'),
                         'options' => [ 'top', 'left', 'bottom', 'right' ],
-                        'description' => esc_html__('Input field margin, will be applied to credit card nummber input, expiry and security code', 'cc-styles-woo' ),
+                        'description' => esc_html__('Input field margin, will be applied to credit card nummber input, expiry and security code', 'cc-styles-woo'),
                         'default' => '',
                     ],
                     [
@@ -151,8 +157,8 @@ class CC_Styles_Options {
                         'selector' => [ '.Input', '.Input--invalid' ],
                         'validate' => 'spacing',
                         'css_property' => [ 'borderTop', 'borderLeft', 'borderBottom', 'borderRight' ],
-                        'label' => esc_html__('Input Border Width', 'cc-styles-woo' ),
-                        'description' => esc_html__('Input field border, select a valid CSS unit as well', 'cc-styles-woo' ),
+                        'label' => esc_html__('Input Border Width', 'cc-styles-woo'),
+                        'description' => esc_html__('Input field border, select a valid CSS unit as well', 'cc-styles-woo'),
                         'options' => [ 'top', 'left', 'bottom', 'right' ],
                         'default' => '',
                     ],
@@ -164,14 +170,14 @@ class CC_Styles_Options {
                         'label'   => esc_html__('Border Style', 'cc-styles-woo'),
                         'default' => 'solid',
                         'options' => [
-                            'none' => esc_html__( 'None', 'cc-styles-woo' ),
-                            'solid' => esc_html__( 'Solid', 'cc-styles-woo' ),
-                            'dashed' => esc_html__( 'Dashed', 'cc-styles-woo' ),
-                            'dotted' => esc_html__( 'Dotted', 'cc-styles-woo' ),
-                            'double' => esc_html__( 'Double', 'cc-styles-woo' ),
-                            'groove' => esc_html__( 'Groove', 'cc-styles-woo' ),
-                            'inset' => esc_html__( 'Inset', 'cc-styles-woo' ),
-                            'ridge' => esc_html__( 'Ridge', 'cc-styles-woo' ),
+                            'none' => esc_html__('None', 'cc-styles-woo'),
+                            'solid' => esc_html__('Solid', 'cc-styles-woo'),
+                            'dashed' => esc_html__('Dashed', 'cc-styles-woo'),
+                            'dotted' => esc_html__('Dotted', 'cc-styles-woo'),
+                            'double' => esc_html__('Double', 'cc-styles-woo'),
+                            'groove' => esc_html__('Groove', 'cc-styles-woo'),
+                            'inset' => esc_html__('Inset', 'cc-styles-woo'),
+                            'ridge' => esc_html__('Ridge', 'cc-styles-woo'),
                         ],
                     ],
                     [
@@ -179,8 +185,8 @@ class CC_Styles_Options {
                         'css_property' => 'borderColor',
                         'type' => 'color',
                         'selector' => [ '.Input', '.Input--invalid' ],
-                        'label' => esc_html__('Input Border Color', 'cc-styles-woo' ),
-                        'description' => esc_html__('Input field border color, will be applied to credit card nummber input, expiry and security code', 'cc-styles-woo' ),
+                        'label' => esc_html__('Input Border Color', 'cc-styles-woo'),
+                        'description' => esc_html__('Input field border color, will be applied to credit card nummber input, expiry and security code', 'cc-styles-woo'),
                         'default' => '',
                     ],
                     [
@@ -188,8 +194,8 @@ class CC_Styles_Options {
                         'type' => 'color',
                         'css_property' => 'color',
                         'selector' => '.Label',
-                        'description' => esc_html__('Label text color, will be applied to credit card nummber input, expiry and security code', 'cc-styles-woo' ),
-                        'label' => esc_html__( 'Labels Color', 'cc-styles-woo' ),
+                        'description' => esc_html__('Label text color, will be applied to credit card nummber input, expiry and security code', 'cc-styles-woo'),
+                        'label' => esc_html__('Labels Color', 'cc-styles-woo'),
                         'default' => '',
                     ],
                     [
@@ -198,8 +204,8 @@ class CC_Styles_Options {
                         'selector' => '.Label',
                         'validate' => 'spacing',
                         'css_property' => [ 'paddingTop', 'paddingLeft', 'paddingBottom', 'paddingRight' ],
-                        'label' => esc_html__('Labels Padding', 'cc-styles-woo' ),
-                        'description' => esc_html__('Labels Padding, select a valid CSS unit as well', 'cc-styles-woo' ),
+                        'label' => esc_html__('Labels Padding', 'cc-styles-woo'),
+                        'description' => esc_html__('Labels Padding, select a valid CSS unit as well', 'cc-styles-woo'),
                         'options' => [ 'top', 'left', 'bottom', 'right' ],
                         'default' => '',
                     ],
@@ -209,8 +215,8 @@ class CC_Styles_Options {
                         'selector' => '.Label',
                         'validate' => 'spacing',
                         'css_property' => [ 'marginTop', 'marginLeft', 'marginBottom', 'marginRight' ],
-                        'label' => esc_html__('Labels Margin', 'cc-styles-woo' ),
-                        'description' => esc_html__('Labels margin, select a valid CSS unit as well', 'cc-styles-woo' ),
+                        'label' => esc_html__('Labels Margin', 'cc-styles-woo'),
+                        'description' => esc_html__('Labels margin, select a valid CSS unit as well', 'cc-styles-woo'),
                         'options' => [ 'top', 'left', 'bottom', 'right' ],
                         'default' => '',
                     ],
@@ -218,50 +224,54 @@ class CC_Styles_Options {
             ],
         
         ];
-	}
-
-	/**
-	 * Helper to get a single option value
-	 */
-	public static function get_option( $key, $default = null ) {
-		$options = get_option( self::$option_name, [] );
-		return $options[$key] ?? $default;
-	}
-
-	/**
-	 * Helper to get all saved options
-	 */
-	public static function get_all_options() {
-		return get_option( self::$option_name, [] );
-	}
+    }
 
     /**
-	 * To clear transients on save
-	 */
-    public function clear_appearance_transients( $option_name, $old_value, $new_value ) {
+     * Helper to get a single option value
+     */
+    public static function get_option( $key, $default = null )
+    {
+        $options = get_option(self::$option_name, []);
+        return $options[$key] ?? $default;
+    }
+
+    /**
+     * Helper to get all saved options
+     */
+    public static function get_all_options()
+    {
+        return get_option(self::$option_name, []);
+    }
+
+    /**
+     * To clear transients on save
+     */
+    public function clear_appearance_transients( $option_name, $old_value, $new_value )
+    {
 
         // Check if the option that was saved is related to your Awesome Options framework
-        if ( $option_name === self::$option_name ) {
+        if ($option_name === self::$option_name ) {
             self::clear_woo_transients();
         }
     }
     /**
-	 * To clear transients
-	 */
-    public static function clear_woo_transients() {
-        delete_transient( 'upe_process_redirect_order_id_mismatched' );
-        delete_transient( 'wcpay_upe_appearance' );
-        delete_transient( 'wcpay_upe_add_payment_method_appearance' );
-        delete_transient( 'wcpay_wc_blocks_upe_appearance' );
-        delete_transient( 'wcpay_upe_bnpl_product_page_appearance' );
-        delete_transient( 'wcpay_upe_bnpl_classic_cart_appearance' );
-        delete_transient( 'wcpay_upe_bnpl_cart_block_appearance' );
-        delete_transient( 'wcpay_upe_appearance_theme' );
-        delete_transient( 'wcpay_upe_add_payment_method_appearance_theme' );
-        delete_transient( 'wcpay_wc_blocks_upe_appearance_theme' );
-        delete_transient( 'wcpay_upe_bnpl_product_page_appearance_theme' );
-        delete_transient( 'wcpay_upe_bnpl_classic_cart_appearance_theme' );
-        delete_transient( 'wcpay_upe_bnpl_cart_block_appearance_theme' );
+     * To clear transients
+     */
+    public static function clear_woo_transients()
+    {
+        delete_transient('upe_process_redirect_order_id_mismatched');
+        delete_transient('wcpay_upe_appearance');
+        delete_transient('wcpay_upe_add_payment_method_appearance');
+        delete_transient('wcpay_wc_blocks_upe_appearance');
+        delete_transient('wcpay_upe_bnpl_product_page_appearance');
+        delete_transient('wcpay_upe_bnpl_classic_cart_appearance');
+        delete_transient('wcpay_upe_bnpl_cart_block_appearance');
+        delete_transient('wcpay_upe_appearance_theme');
+        delete_transient('wcpay_upe_add_payment_method_appearance_theme');
+        delete_transient('wcpay_wc_blocks_upe_appearance_theme');
+        delete_transient('wcpay_upe_bnpl_product_page_appearance_theme');
+        delete_transient('wcpay_upe_bnpl_classic_cart_appearance_theme');
+        delete_transient('wcpay_upe_bnpl_cart_block_appearance_theme');
     }
 }
 
